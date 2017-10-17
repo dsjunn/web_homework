@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="week3_calculator.css">
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+
+	var temp_value = 0;
+	var result = 0;
+ 	var operator = "";
+
+$(document).ready(function(){
+    $(".number").click(function(){
+        $("#screen").html($("#screen").html()+$(this).html());
+    });
+
+    $(".operator").click(function(){
+    	temp_value = parseFloat($("#screen").html().replace(/ /gi, ""));
+    	 
+    	if(operator != "") {
+    		if(operator == "/") {
+    			result = result / temp_value;
+    		}
+    		if(operator == "+") {
+    			result = temp_value + result;
+    		}
+    		if(operator == "-") {
+    			result = result - temp_value;
+    		}
+    		if(operator == "*") {
+    			result = temp_value * result;
+    		}
+
+    		$("#screen").text("");
+    	}else {
+    		result = temp_value;
+    		$("#screen").text("");
+    	}
+
+    	operator = $(this).html().trim();
+    	console.log(operator);
+
+    });
+    $("#equal").click(function(){
+    	temp_value = parseFloat($("#screen").html().replace(/ /gi, ""));
+    	console.log("temp_value:"+temp_value);
+    	if(operator != "") {
+    		if(operator == "/") {
+    			result = result / temp_value;
+    		}
+    		if(operator == "+") {
+    			result = temp_value + result;
+    		}
+    		if(operator == "-") {
+    			result = result - temp_value;
+    		}
+    		if(operator == "*") {
+    			result = temp_value * result;
+    		}
+
+    	}else {
+    		result = temp_value;
+    	}
+
+    	$("#screen").text(result);
+    });
+    $("#clear").click(function(){
+        result = 0;
+        temp_value = 0;
+        $("#screen").html("");
+    });
+});
+</script>
+
+</head>
+<body>
+	<div class = "content-field">
+		<div class = "content-left inline-block">
+			<div class = "screen-wrapped inline-block">
+				<div class = "screen"><p id="screen"></p></div>
+			</div>
+			<div class = "number-wrapped inline-block">
+				<div class = "bigbox inline-block">
+					<div class = "number box font" id = "number_1"> 1 </div>
+			  		<div class = "number box font" id = "number_2"> 2 </div>
+			  		<div class = "number box font" id = "number_3"> 3 </div>
+			  	</div>
+			  	<div class = "bigbox inline-block">
+			  		<div class = "number box font" id = "number_4"> 4 </div>
+			  		<div class = "number box font" id = "number_5"> 5 </div>
+			  		<div class = "number box font" id = "number_6"> 6 </div>
+			  	</div>
+			  	<div class = "bigbox inline-block">
+			  		<div class = "number box font" id = "number_7"> 7 </div>
+			  		<div class = "number box font" id = "number_8"> 8 </div>
+			  		<div class = "number box font" id = "number_9"> 9 </div>
+			  	</div>
+			  	<div class = "bigbox inline-block">
+			  		<div class = "number box font" id = "number_0"> 0 </div>
+			  		<div class = "box font" id = "equal"> = </div>
+			  	</div>
+			</div>
+		</div>
+		<div class = "content-right inline-block">
+			<div class = "operator-wrapped inline-block">
+				<div class = "clear square font" id = "clear"> AC </div>
+				<div class = "operator square font" id = "share"> / </div>
+				<div class = "operator square font" id = "multiple"> * </div>
+				<div class = "operator square font" id = "plus"> + </div>
+				<div class = "operator square font" id = "minus"> - </div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
